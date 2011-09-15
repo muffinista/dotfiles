@@ -1,0 +1,55 @@
+export ALTERNATE_EDITOR=emacs EDITOR=emacsclient VISUAL=emacsclient
+source /usr/share/emacs/23.2/etc/emacs.bash 
+
+HISTSIZE=50000
+SAVEHIST=100000
+DIRSTACKSIZE=10
+
+# If this is set, zsh sessions will append their history list to
+# the history file, rather than overwrite it. Thus, multiple parallel
+# zsh sessions will all have their history lists added to the
+# history file, in the order they are killed
+setopt append_history
+
+# invoke this every time when u change .zshrc to recompile it.
+function src ()
+{
+	autoload -U zrecompile
+	[ -f ~/.zshrc ] && zrecompile -p ~/.zshrc
+	[ -f ~/.zcompdump ] && zrecompile -p ~/.zcompdump
+	[ -f ~/.zshrc.zwc.old ] && rm -f ~/.zshrc.zwc.old
+	[ -f ~/.zcompdump.zwc.old ] && rm -f ~/.zcompdump.zwc.old
+	source ~/.zshrc 
+}
+
+# emacs editing
+bindkey -e
+
+# # colorful listings
+# zmodload -i zsh/complist
+# zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# zstyle ':completion:*' file-patterns '%p:globbed-files' '*(-/):directories' '*:all-files'
+
+# # start menu completion only if it could find no unambiguous initial string
+# zstyle ':completion:*:correct:*'       insert-unambiguous true
+
+# # complete 'cd -<tab>' with menu
+# zstyle ':completion:*:*:cd:*:directory-stack' menu yes select
+
+# # activate menu selection 
+# #zstyle ':completion:*' menu #no=5 #select=long
+
+alias l="ls --color=auto -lstr"
+alias la="ls --color=auto -lstra"
+
+# Customize to your needs...
+export PATH=$HOME/bin:/$HOME/.rvm/bin:/$HOME/libs/flex/bin:/var/lib/gems/1.8/bin:/usr/local/share/android-sdk/tools:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+
+# This loads RVM into a shell session.
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+
+emacsat () {
+	foo=("${(s/:/)1}")
+	emacsclient +$foo[2] $foo[1]
+}
