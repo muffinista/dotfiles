@@ -1,0 +1,40 @@
+
+;; ----- smex-history -----
+(
+ query-replace
+ set-buffer-file-coding-system
+ comment-region
+ insert-file
+ package-install
+ package-list-packages
+ package-menu-mode
+)
+
+;; ----- smex-data -----
+(
+ (package-install . 6)
+ (load-theme . 1)
+ (query-replace . 58)
+ (auto-fill-mode . 2)
+ (js-mode . 5)
+ (icalendar-import-file . 1)
+ (insert-file . 3)
+ (mkdir . 1)
+ (indent-region . 11)
+ (comment-region . 11)
+ (uncomment-region . 2)
+ (php-mode . 16)
+ (sql-mysql . 8)
+ (menu-bar-mode . 4)
+ (js2-mode . 1)
+ (server-start . 4)
+ (markdown-mode . 3)
+ (goto-line . 1)
+ (recover-file . 1)
+ (sh-mode . 1)
+ (ispell-word . 1)
+ (package-menu-mode . 1)
+ (package-list-packages . 1)
+ (sass-mode . 2)
+ (set-buffer-file-coding-system . 1)
+)

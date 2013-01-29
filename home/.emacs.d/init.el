@@ -1,79 +1,31 @@
-;;; init.el --- Where all the magic begins
-;;
-;; Part of the Emacs Starter Kit
-;;
-;; This is the first thing to get loaded.
-;;
-;; "Emacs outshines all other editing software in approximately the
-;; same way that the noonday sun does the stars. It is not just bigger
-;; and brighter; it simply makes everything else vanish."
-;; -Neal Stephenson, "In the Beginning was the Command Line"
-
-;; Turn off mouse interface early in startup to avoid momentary display
-;; You really don't need these; trust me.
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-
-;; Load path etc.
-
-(setq dotfiles-dir (file-name-directory
-                    (or (buffer-file-name) load-file-name)))
-
-;; Load up ELPA, the package manager
-
-(add-to-list 'load-path dotfiles-dir)
-
-(add-to-list 'load-path (concat dotfiles-dir "/elpa-to-submit"))
-
-(setq autoload-file (concat dotfiles-dir "loaddefs.el"))
-(setq package-user-dir (concat dotfiles-dir "elpa"))
-(setq custom-file (concat dotfiles-dir "custom.el"))
-
 (require 'package)
-(dolist (source '(("marmalade" . "http://marmalade-repo.org/packages/")
-                  ("elpa" . "http://tromey.com/elpa/")))
-  (add-to-list 'package-archives source t))
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (package-initialize)
-(require 'starter-kit-elpa)
 
-;; These should be loaded on startup rather than autoloaded on demand
-;; since they are likely to be used in every session
+(when (not package-archive-contents)
+  (package-refresh-contents))
 
-(require 'cl)
-(require 'saveplace)
-(require 'ffap)
-(require 'uniquify)
-(require 'ansi-color)
-(require 'recentf)
+;; Add in your own as you wish:
+(defvar my-packages '(starter-kit starter-kit-ruby starter-kit-bindings)
+  "A list of packages to ensure are installed at launch.")
 
-;; backport some functionality to Emacs 22 if needed
-(require 'dominating-file)
+;; starter-kit-js
 
-;; Load up starter kit customizations
+(dolist (p my-packages)
+  (when (not (package-installed-p p))
+    (package-install p)))
 
-(require 'starter-kit-defuns)
-(require 'starter-kit-bindings)
-(require 'starter-kit-misc)
-(require 'starter-kit-registers)
-(require 'starter-kit-eshell)
-(require 'starter-kit-lisp)
-(require 'starter-kit-perl)
-(require 'starter-kit-ruby)
-(require 'starter-kit-js)
+(autoload 'markdown-mode "markdown-mode.el"
+   "Major mode for editing Markdown files" t)
+(setq auto-mode-alist
+   (cons '("\\.md" . markdown-mode) auto-mode-alist))
 
-(regen-autoloads)
-(load custom-file 'noerror)
+(load-theme 'deeper-blue t)
 
-;; You can keep system- or user-specific customizations here
-(setq system-specific-config (concat dotfiles-dir system-name ".el")
-      user-specific-config (concat dotfiles-dir user-login-name ".el")
-      user-specific-dir (concat dotfiles-dir user-login-name))
-(add-to-list 'load-path user-specific-dir)
+(setq-default indent-tabs-mode nil) ; always replace tabs with spaces
+(setq-default tab-width 2) ; set tab width to 4 for all buffers
 
-(if (file-exists-p system-specific-config) (load system-specific-config))
-(if (file-exists-p user-specific-config) (load user-specific-config))
-(if (file-exists-p user-specific-dir)
-  (mapc #'load (directory-files user-specific-dir nil ".*el$")))
-
-;;; init.el ends here
+(setq load-path (append (list (expand-file-name "~/.emacs.d/libs/js2-mode")) load-path))
+(autoload 'js2-mode "js2-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
