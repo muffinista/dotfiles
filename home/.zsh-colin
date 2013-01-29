@@ -1,5 +1,5 @@
 export ALTERNATE_EDITOR=emacs EDITOR=emacsclient VISUAL=emacsclient
-source /usr/share/emacs/23.2/etc/emacs.bash 
+#source /usr/share/emacs/23.3/etc/emacs.bash
 
 HISTSIZE=50000
 SAVEHIST=100000
@@ -19,7 +19,7 @@ function src ()
 	[ -f ~/.zcompdump ] && zrecompile -p ~/.zcompdump
 	[ -f ~/.zshrc.zwc.old ] && rm -f ~/.zshrc.zwc.old
 	[ -f ~/.zcompdump.zwc.old ] && rm -f ~/.zcompdump.zwc.old
-	source ~/.zshrc 
+	source ~/.zshrc
 }
 
 # emacs editing
@@ -35,21 +35,37 @@ bindkey -e
 # zstyle ':completion:*:correct:*'       insert-unambiguous true
 
 # # complete 'cd -<tab>' with menu
-# zstyle ':completion:*:*:cd:*:directory-stack' menu yes select
+zstyle ':completion:*:*:cd:*:directory-stack' menu yes select
 
-# # activate menu selection 
+# # activate menu selection
 # #zstyle ':completion:*' menu #no=5 #select=long
 
 alias l="ls --color=auto -lstr"
 alias la="ls --color=auto -lstra"
 
 # Customize to your needs...
-export PATH=$HOME/bin:/$HOME/.rvm/bin:/$HOME/libs/flex/bin:/var/lib/gems/1.8/bin:/usr/local/share/android-sdk/tools:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+export PATH=$HOME/bin:$HOME/bin/sublime:$HOME/.rvm/bin:/var/lib/gems/1.8/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 
 # This loads RVM into a shell session.
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 emacsat () {
 	foo=("${(s/:/)1}")
-	emacsclient +$foo[2] $foo[1]
+	em +$foo[2] $foo[1]
 }
+
+# edit files as root in emacs (http://emacs-fu.blogspot.com/2011/12/system-administration-with-emacs.html)
+alias E="SUDO_EDITOR=\"emacsclient \" sudoedit"
+alias em="emacsclient -n"
+
+alias setup_db3="ssh -f -L 13306:db3.bandzoogle.com:3306 colin@db3.bandzoogle.com -N"
+alias import_colin='COPY_FILES=0 SKIP_MEDIA=1 rake --trace "zoogle:import:account[colin]"'
+
+alias 2z="cd /home/colin/Zoogle/zooglerails"
+alias 2p="cd /home/colin/Projects"
+
+rbfind() { find . -name '*rb' -exec grep -l $*  {} \; }
+rbshow() { find . -name '*rb' -exec grep $*  {} \; }
+jsfind() { find . -name '*js' -exec grep -l $*  {} \; }
+
+subly() { sublime_text /home/colin/Zoogle/zooglerails/zooglerails.sublime-project & }
