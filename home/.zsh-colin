@@ -65,3 +65,23 @@ rbshow() { find . -name '*rb' -exec grep $*  {} \; }
 jsfind() { find . -name '*js' -exec grep -l $*  {} \; }
 
 tabs 4
+
+function try_connect_ssh() {
+    if $(echo "$1" | grep -q '^ssh://') ; then
+        DEST=$(echo "$1" | cut -c7-)
+        ssh $DEST
+        return 0
+    else
+        return 1
+    fi
+}
+
+function preexec() {
+ __last_command=$1
+}
+
+trap '
+ set -- ${=__last_command}
+ ssh=${~1}
+ try_connect_ssh "$ssh" || return 1
+' ZERR

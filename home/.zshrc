@@ -32,7 +32,8 @@ source "$HOME/.rvm/scripts/rvm"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git rails3 ruby command-not-found bundler rvm)
+plugins=(git rails3 ruby bundler rvm)
+#  command-not-found
 
 source $HOME/.zsh-colin
 source $HOME/.zsh-private
@@ -40,3 +41,5 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 export PATH=/home/colin/.rvm/gems/ruby-1.9.3-p286/bin:/home/colin/.rvm/gems/ruby-1.9.3-p286@global/bin:/home/colin/.rvm/rubies/ruby-1.9.3-p286/bin:/home/colin/.rvm/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+
+
