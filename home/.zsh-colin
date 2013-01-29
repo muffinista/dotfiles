@@ -1,5 +1,4 @@
 export ALTERNATE_EDITOR=emacs EDITOR=emacsclient VISUAL=emacsclient
-#source /usr/share/emacs/23.3/etc/emacs.bash
 
 HISTSIZE=50000
 SAVEHIST=100000
@@ -58,9 +57,6 @@ emacsat () {
 alias E="SUDO_EDITOR=\"emacsclient \" sudoedit"
 alias em="emacsclient -n"
 
-alias setup_db3="ssh -f -L 13306:db3.bandzoogle.com:3306 colin@db3.bandzoogle.com -N"
-alias import_colin='COPY_FILES=0 SKIP_MEDIA=1 rake --trace "zoogle:import:account[colin]"'
-
 alias 2z="cd /home/colin/Zoogle/zooglerails"
 alias 2p="cd /home/colin/Projects"
 
@@ -68,4 +64,4 @@ rbfind() { find . -name '*rb' -exec grep -l $*  {} \; }
 rbshow() { find . -name '*rb' -exec grep $*  {} \; }
 jsfind() { find . -name '*js' -exec grep -l $*  {} \; }
 
-subly() { sublime_text /home/colin/Zoogle/zooglerails/zooglerails.sublime-project & }
+tabs 4
