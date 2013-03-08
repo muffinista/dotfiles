@@ -3,3 +3,4 @@
 \.#*
 .*-private
 .emacs.d/.smex-items
+.emacs.d/places
