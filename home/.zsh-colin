@@ -64,6 +64,10 @@ rbfind() { find . -name '*rb' -exec grep -l $*  {} \; }
 rbshow() { find . -name '*rb' -exec grep $*  {} \; }
 jsfind() { find . -name '*js' -exec grep -l $*  {} \; }
 
+#
+# tab widths
+#
+export LESS="-x4"
 tabs 4
 
 function try_connect_ssh() {

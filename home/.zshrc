@@ -40,6 +40,6 @@ source $HOME/.zsh-private
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/home/colin/.rvm/gems/ruby-1.9.3-p286/bin:/home/colin/.rvm/gems/ruby-1.9.3-p286@global/bin:/home/colin/.rvm/rubies/ruby-1.9.3-p286/bin:/home/colin/.rvm/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+export PATH=/home/colin/.rvm/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$PATH
 
 
