@@ -57,9 +57,6 @@ emacsat () {
 alias E="SUDO_EDITOR=\"emacsclient \" sudoedit"
 alias em="emacsclient -n"
 
-alias 2z="cd /home/colin/Zoogle/zooglerails"
-alias 2p="cd /home/colin/Projects"
-
 rbfind() { find . -name '*rb' -exec grep -l $*  {} \; }
 rbshow() { find . -name '*rb' -exec grep $*  {} \; }
 jsfind() { find . -name '*js' -exec grep -l $*  {} \; }
@@ -71,6 +68,12 @@ export LESS="-x4"
 tabs 4
 
 alias cleanshell="kill -9 `echo $(ps -o pid= | grep -v $$)`"
+
+alias 2z="cd /home/colin/Zoogle/zooglerails"
+alias 2p="cd /home/colin/Projects"
+
+alias rebase="git pull --rebase origin master"
+
 
 function try_connect_ssh() {
     if $(echo "$1" | grep -q '^ssh://') ; then
