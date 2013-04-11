@@ -9,6 +9,10 @@ export ZSH=$HOME/.oh-my-zsh
 #ZSH_THEME="robbyrussell"
 ZSH_THEME="cypher"
 
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
@@ -24,7 +28,10 @@ ZSH_THEME="cypher"
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 # COMPLETION_WAITING_DOTS="true"
 
+source "$HOME/.rvm/scripts/rvm"
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(rails3 ruby git command-not-found rvm bundler)
 
@@ -39,3 +46,4 @@ export RUBY_GC_MALLOC_LIMIT=100000000
 export RUBY_HEAP_FREE_MIN=500000 
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
