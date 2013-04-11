@@ -2,5 +2,6 @@
 \#*#
 \.#*
 .*-private
-.emacs.d/.smex-items
-.emacs.d/places
+*.emacs.d/.smex-items
+*.emacs.d/places
+*.emails.d/tramp
