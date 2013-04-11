@@ -70,6 +70,8 @@ jsfind() { find . -name '*js' -exec grep -l $*  {} \; }
 export LESS="-x4"
 tabs 4
 
+alias cleanshell="kill -9 `echo $(ps -o pid= | grep -v $$)`"
+
 function try_connect_ssh() {
     if $(echo "$1" | grep -q '^ssh://') ; then
         DEST=$(echo "$1" | cut -c7-)
