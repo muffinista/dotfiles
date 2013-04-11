@@ -1,5 +1,6 @@
 # Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
+#ZSH=$HOME/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -25,9 +26,16 @@ ZSH_THEME="cypher"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(rails3 ruby git command-not-found rvm)
+plugins=(rails3 ruby git command-not-found rvm bundler)
 
 source $HOME/.zsh-colin
 source $HOME/.zsh-private
 source $ZSH/oh-my-zsh.sh
 
+export RUBY_HEAP_MIN_SLOTS=500000
+export RUBY_HEAP_SLOTS_INCREMENT=500000
+export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
+export RUBY_GC_MALLOC_LIMIT=100000000
+export RUBY_HEAP_FREE_MIN=500000 
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
