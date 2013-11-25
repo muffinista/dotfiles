@@ -48,6 +48,7 @@ export PATH=$HOME/bin:$HOME/bin/sublime:$HOME/.rvm/bin:/var/lib/gems/1.8/bin:/us
 # This loads RVM into a shell session.
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
+
 emacsat () {
 	foo=("${(s/:/)1}")
 	em +$foo[2] $foo[1]
